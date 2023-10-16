@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Page</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .parent{
+            display:inline-grid;
+        background-color: green;
+        grid-template-columns:auto auto auto auto ;
+        }
+        .child{
+            background-color: red;
+            height:200px;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height:100vh;
+        }
+        #myForm{
+            border:1px solid black;
+            padding:10px 15px;
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <form id="myForm" method="GET" action="message.html">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"   value="sagar" readonly><br><br>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+    
+            <input type="button" value="Submit" onclick="submitForm()">
+            <!-- <input type="submit" value="Submit"> -->
+        </form>
+    </div>
+    
+
+   
+    <script>
+       
+        function submitForm() {
+            // Get form data
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+
+            //http://127.0.0.1:5500/another_page.html?name=np&email=nirav%40gmail
+            
+            //http://127.0.0.1:5500/another_page.html?name=np&email=nirav%40gmail
+            
+            // http://127.0.0.1:5500/another_page.html?name=&email= 
+            // Encode form data into a URL query string
+            var queryString = "name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email);
+            // var queryString = "name=" + name + "&email=" + email;
+
+            // Redirect to another HTML page with the form data in the query string
+            window.location.href = "message.html?" + queryString;
+            console.log(queryString)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receiving Page</title>
+</head>
+<body>
+    <h1>Data Received</h1>
+
+    <script>
+        // Parse the query string to retrieve the form data
+        // var queryString = window.location.search;
+
+        // ?name=he%20he%20he&email=haha%40gmail.com
+
+        var queryString = window.location.search.substring(1);
+        // name=he%20he%20he&email=haha%40gmail.com
+        
+
+        var queryParams = queryString.split("&");
+        // ['name=he%20he%20he', 'email=haha%40gmail.com']
+        // console.log(queryParams);
+
+        var formData = {};
+
+        for (var i = 0; i < queryParams.length; i++) {
+            var param = queryParams[i].split("=");
+            formData[param[0]] = decodeURIComponent(param[1]);
+        }
+
+        // Display the received data
+        var name = formData.name;
+        var email = formData.email;
+
+        document.write("<p>Name: " + name + "</p>");
+        document.write("<p>Email: " + email + "</p>");
+    </script>
+</body>
+</html>
